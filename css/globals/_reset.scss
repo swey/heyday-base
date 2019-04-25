@@ -53,9 +53,4 @@ address {
 [data-whatinput="mouse"] *:focus {
 	outline: none;
 }
-
-@media (prefers-reduced-motion) {
-	transition: none !important;
-	animation: unset !important;
-}
 /* stylelint-enable selector-max-type */
