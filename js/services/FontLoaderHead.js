@@ -10,7 +10,7 @@ export default class FontLoaderHead {
 	 *
 	 * @private
 	 */
-	static addLoadedFontsFont(className) {
+	static addLoadedFont(className) {
 		if (sessionStorage[className] === 'true' || FontLoaderHead._isExcludedBrowser()) {
 			document.documentElement.className += ` ${className}`;
 		}
