@@ -61,3 +61,5 @@ export default class FontLoader {
 		}
 	}
 }
+
+export { default as FontFaceObserver } from 'fontfaceobserver/fontfaceobserver';
