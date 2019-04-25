@@ -1,0 +1,18 @@
+/**
+ * Sets a same box-sizing and makes life better
+ *
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+
+/* stylelint-disable selector-max-type */
+/* Exception for setting box-sizing */
+html {
+	box-sizing: border-box;
+}
+/* stylelint-enable selector-max-type */
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}

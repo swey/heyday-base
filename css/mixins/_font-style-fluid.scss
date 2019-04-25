@@ -1,0 +1,89 @@
+/**
+ * font-style Mixin
+ *
+ * Usage:
+ *
+ * .class {
+ *     @include font-style(h1-main);
+ * }
+ *
+ * Output:
+ *
+ * .class {
+ * 	   font-family: Arial, sans-serif;
+ *     font-weight: bold;
+ *     font-style: normal;
+ * }
+ * @media(small-width: 80em) {
+ *     .class {
+ * 	       font-size: 160px;
+ *         line-height: 1;
+ *     }
+ * }
+ * .wf-roboto-loaded .class {
+ *     font-family: 'Roboto Condensed';
+ * }
+ */
+
+@mixin font-style($name) {
+	/* stylelint-disable length-zero-no-unit */
+	min-height: 0vw; /* Fix Safari bug with viewport units in calc() */
+	/* stylelint-enable length-zero-no-unit */
+
+	@include font-family(
+		map-deep-get($font-styles, $name, font-family),
+		map-deep-get($font-styles, $name, font-weight),
+		map-deep-get($font-styles, $name, font-style)
+	);
+
+	line-height: strip-unit(map-deep-get($font-styles, $name, small-line-height) / map-deep-get($font-styles, $name, small-font-size));
+
+	@include mq($from: medium) {
+		line-height: strip-unit(map-deep-get($font-styles, $name, medium-line-height) / map-deep-get($font-styles, $name, medium-font-size));
+	}
+
+	@include mq($from: large) {
+		line-height: strip-unit(map-deep-get($font-styles, $name, large-line-height) / map-deep-get($font-styles, $name, large-font-size));
+	}
+
+	@include mq($from: xlarge) {
+		line-height: strip-unit(map-deep-get($font-styles, $name, xlarge-line-height) / map-deep-get($font-styles, $name, xlarge-font-size));
+	}
+
+	@if map-deep-get($font-styles, $name, text-transform) != none {
+		text-transform: map-deep-get($font-styles, $name, text-transform);
+	}
+
+	// <= 320 - medium
+	@include fluid(
+		font-size,
+		map-deep-get($font-styles, $name, small-font-size),
+		map-deep-get($font-styles, $name, medium-font-size),
+		320px,
+		map-get($breakpoints, medium),
+		true,
+		false
+	);
+
+	// medium - large
+	@include fluid(
+		font-size,
+		map-deep-get($font-styles, $name, medium-font-size),
+		map-deep-get($font-styles, $name, large-font-size),
+		map-get($breakpoints, medium),
+		map-get($breakpoints, large),
+		false,
+		false
+	);
+
+	// large - xlarge
+	@include fluid(
+		font-size,
+		map-deep-get($font-styles, $name, large-font-size),
+		map-deep-get($font-styles, $name, xlarge-font-size),
+		map-get($breakpoints, large),
+		map-get($breakpoints, xlarge),
+		false,
+		true
+	);
+}

@@ -1,0 +1,7 @@
+/**
+ * Visually hidden text for screenreaders, for example.
+ */
+
+.o-visuallyhidden {
+	@include visuallyhidden();
+}

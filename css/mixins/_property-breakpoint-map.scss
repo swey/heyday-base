@@ -1,0 +1,52 @@
+/**
+ * property-breakpoint-map Mixin
+ *
+ * Uses a map with values per breakpoint and
+ * sets the defined property in every defined breakpoint
+ *
+ *
+ * Usage:
+ *
+ * $header-height: (
+ * 	 small: 60px,
+ * 	 large: 80px
+ * );
+ *
+ * .class {
+ *     @include property-breakpoint-map(height, $header-height);
+ * }
+ *
+ *
+ * Output:
+ *
+ * .class {
+ * 	   height: 60px;
+ * }
+ * @media(min-width: 64em) {
+ *     .class {
+ *         height: 80px;
+ *     }
+ * }
+ */
+
+@mixin property-breakpoint-map($property, $map, $factor: null, $offset: null) {
+	@each $breakpoint, $value in $map {
+
+		@if $factor {
+			$value: $value * $factor;
+		}
+
+		@if $offset {
+			$value: $value + $offset;
+		}
+
+		@if $breakpoint == small {
+			// Mobile first, so no media query needed for "small"
+			#{$property}: $value;
+		} @else {
+			@include mq($from: $breakpoint) {
+				#{$property}: $value;
+			}
+		}
+	}
+}

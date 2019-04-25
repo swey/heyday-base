@@ -1,0 +1,27 @@
+/**
+ * aspect-ratio-helper Mixin
+ *
+ * Usage:
+ * .class {
+ *     @include aspect-ratio-helper('16x9');
+ * }
+ *
+ * Output:
+ * .class {
+ *     &::before {
+ *         display: block;
+ *         content: "";
+ *         width: 100%;
+ *         padding-top: percentage(9/16);
+ *     }
+ * }
+ */
+
+@mixin aspect-ratio-helper($name) {
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+		padding-top: aspect-ratio($name);
+	}
+}

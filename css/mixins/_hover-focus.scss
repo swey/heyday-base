@@ -1,0 +1,45 @@
+/**
+ * Usage:
+ *
+ * .my-link {
+ *   @include hover-focus() {
+ *     text-decoration: underline;
+ *   }
+ * }
+ *
+ * .my-child {
+ *   @include hover-focus(".my-parent") {
+ *     background-color: red;
+ *   }
+ * }
+ *
+ * Output:
+ *
+ * .my-link {
+ *   [data-whatintent="mouse"] &:hover,
+ *   [data-whatinput="keyboard"] &:focus {
+ *     text-decoration: underline;
+ *   }
+ * }
+ *
+ * .my-child {
+ *   [data-whatintent="mouse"] .my-parent:hover &,
+ *   [data-whatinput="keyboard"] .my-parent:focus & {
+ *      background-color: red;
+ *   }
+ *}
+ */
+
+@mixin hover-focus($hover-parent: false) {
+	@if $hover-parent {
+		[data-whatintent="mouse"] #{$hover-parent}:hover &,
+		[data-whatinput="keyboard"] #{$hover-parent}:focus & {
+			@content;
+		}
+	} @else {
+		[data-whatintent="mouse"] &:hover,
+		[data-whatinput="keyboard"] &:focus {
+			@content;
+		}
+	}
+}

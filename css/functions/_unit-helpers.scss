@@ -1,0 +1,38 @@
+/**
+ * Unit Helper Functions
+ */
+
+@function px-to-em($px, $ref: $font-size_base) {
+	@return to-em(to-px($px) / to-px($ref));
+}
+
+@function px-to-rem($px) {
+	@return to-rem(to-px($px) / to-px($font-size_base));
+}
+
+@function px-to-px($px, $ref: $size_width-content) {
+	@return (to-px($px) / to-px($ref) * 100%);
+}
+
+/* stylelint-disable length-zero-no-unit */
+/* The zero length values are needed for the function to work and convert the units */
+@function to-em($val) {
+	@return ($val + 0em);
+}
+
+@function to-rem($val) {
+	@return ($val + 0rem);
+}
+
+@function to-px($val) {
+	@return ($val + 0px);
+}
+/* stylelint-enable length-zero-no-unit */
+
+@function strip-unit($number) {
+	@if type-of($number) == "number" and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+
+	@return $number;
+}

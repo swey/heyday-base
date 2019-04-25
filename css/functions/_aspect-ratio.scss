@@ -1,0 +1,13 @@
+/**
+ * aspect-ratio function
+ *
+ * Usage:
+ * .class {
+ *	   &::before {
+ *         padding-bottom: aspect-ratio('16x9');
+ *     }
+ * }
+ */
+@function aspect-ratio($name) {
+	@return percentage(map-deep-get($aspect-ratios, $name, height) / map-deep-get($aspect-ratios, $name, width));
+}

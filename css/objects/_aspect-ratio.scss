@@ -1,0 +1,41 @@
+/**
+ * Often used .o-aspect-ratio class variants
+ * for intrinsic ratio containers.
+ *
+ * Mostly used with an image inside:
+ *
+ * Usage:
+ *
+ * <div class="o-aspect-ratio o-aspect-ratio--3x2">
+ *     <img src="" alt="">
+ * </div>
+ */
+
+.o-aspect-ratio {
+	position: relative;
+
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+	}
+
+	> *:first-child:last-child {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+/**
+ * Create all modifier classes from `$aspect-ratios` map
+ */
+@each $name, $value in $aspect-ratios {
+	.o-aspect-ratio--#{$name} {
+		&::before {
+			padding-top: aspect-ratio($name);
+		}
+	}
+}

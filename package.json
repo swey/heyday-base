@@ -1,0 +1,19 @@
+{
+  "name": "@swey/heyday-base",
+  "version": "0.1.0",
+  "description": "Heyday Base CSS + JS\n",
+  "main": "src/adapter.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swey/heyday-base.git"
+  },
+  "author": "Heyday",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/swey/heyday-base/issues"
+  },
+  "homepage": "https://github.com/swey/heyday-base",
+  "dependencies": {
+    "normalize.css": "8.0.1"
+  }
+}

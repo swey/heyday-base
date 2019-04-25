@@ -1,0 +1,32 @@
+/**
+ * font-size and line-height
+ *
+ * Usage:
+ *
+ * .title {
+ *     @include font-size(16px, 24px);
+ * }
+ *
+ * Output:
+ *
+ * .title {
+ *     font-size: 16px;
+ *     line-height: 1.5;
+ * }
+ *
+ * Or with 'auto' line-height:
+ *
+ * .title {
+ *     @include font-size(16px, auto);
+ * }
+ */
+
+@mixin font-size($font-size, $line-height: $font-size) {
+	font-size: $font-size;
+
+	@if $line-height == auto {
+		line-height: $line-height-base;
+	} @else {
+		line-height: strip-unit($line-height / $font-size);
+	}
+}

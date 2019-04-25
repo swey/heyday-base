@@ -1,0 +1,17 @@
+/**
+ * Overflow-Wrap
+ *
+ * Wraps text, which is too long to fit in one line and would otherwise create a text which overflows it's content box.
+ * `word-wrap` is the legacy property name, which is still required by some
+ * browsers.
+ * Because Autoprefixer is not creating `word-wrap` when it
+ * encounters `overflow-wrap`, use this mixin when setting `overflow-wrap`.
+ *
+ * From MDN (https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap):
+ * In contrast to `word-break`, `overflow-wrap` will only create a break if an entire word cannot be placed on its own line without overflowing.
+ */
+
+@mixin overflow-wrap($wrap: break-word) {
+	word-wrap: $wrap;
+	overflow-wrap: $wrap;
+}

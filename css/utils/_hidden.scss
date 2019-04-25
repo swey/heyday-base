@@ -1,0 +1,31 @@
+/**
+ * Visuallyhidden
+ */
+
+.u-hidden {
+	display: none !important;
+}
+
+.u-hidden-s {
+	@include mq($to: medium) {
+		display: none !important;
+	}
+}
+
+.u-hidden-m-up {
+	@include mq($from: medium) {
+		display: none !important;
+	}
+}
+
+.u-hidden-m-down {
+	@include mq($to: large) {
+		display: none !important;
+	}
+}
+
+.u-hidden-l-up {
+	@include mq($from: large) {
+		display: none !important;
+	}
+}

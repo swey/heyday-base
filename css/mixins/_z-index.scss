@@ -1,0 +1,6 @@
+/**
+ * Returns a z-index for the given name from the z-index list
+ */
+@mixin z-index($name) {
+	z-index: map-get($z-indicies, $name);
+}

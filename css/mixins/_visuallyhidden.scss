@@ -1,0 +1,35 @@
+/**
+ * Hide visually
+ *
+ * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ * for discussion of different solutions
+ */
+
+@mixin visuallyhidden() {
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	clip: rect(0 0 0 0);
+	position: absolute;
+	margin: -1px;
+}
+
+@mixin visuallyhidden-reset() {
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+	position: static;
+	margin: 0;
+}
+
+@mixin visuallyhidden-focusable() {
+	@include visuallyhidden();
+
+	&:focus,
+	&:active {
+		@include visuallyhidden-reset();
+	}
+}
