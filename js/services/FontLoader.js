@@ -13,6 +13,11 @@ export default class FontLoader {
 	}
 
 	addGroup(className, list) {
+		// Don't add if already loaded
+		if (sessionStorage[className] === 'true') {
+			return;
+		}
+
 		this._fontGroups.push(FontLoader._loadFonts(className, list));
 	}
 
