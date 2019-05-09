@@ -1,6 +1,6 @@
 {
   "name": "@swey/heyday-base",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Heyday Base CSS + JS\n",
   "main": "src/adapter.js",
   "repository": {
