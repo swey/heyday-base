@@ -1,5 +1,5 @@
 /**
- * font-style Mixin
+ * font-style-fluid Mixin
  *
  * Usage:
  *
@@ -25,7 +25,7 @@
  * }
  */
 
-@mixin font-style($name) {
+@mixin font-style-fluid($name) {
 	/* stylelint-disable length-zero-no-unit */
 	min-height: 0vw; /* Fix Safari bug with viewport units in calc() */
 	/* stylelint-enable length-zero-no-unit */
@@ -86,4 +86,9 @@
 		false,
 		true
 	);
+}
+
+// Default implementation of font-style mixin with the possibility for overwriting
+@mixin font-style($name) {
+	@include font-style-fluid($name);
 }
