@@ -1,8 +1,7 @@
 {
   "name": "@swey/heyday-base",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Heyday Base CSS + JS\n",
-  "main": "src/adapter.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/swey/heyday-base.git"
@@ -15,6 +14,7 @@
   "homepage": "https://github.com/swey/heyday-base",
   "dependencies": {
     "fontfaceobserver": "2.0.13",
+    "lodash": "^4.17.15",
     "normalize.css": "8.0.1"
   }
 }
