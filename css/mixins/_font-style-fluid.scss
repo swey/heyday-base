@@ -25,7 +25,6 @@
  * }
  */
 
-$large: map-get($breakpoints, large);
 $xlarge: map-get($breakpoints, xlarge);
 
 @mixin font-style($name) {
@@ -45,10 +44,8 @@ $xlarge: map-get($breakpoints, xlarge);
 		line-height: strip-unit(map-deep-get($font-styles, $name, medium-line-height) / map-deep-get($font-styles, $name, medium-font-size));
 	}
 
-	@if $large {
-		@include mq($from: large) {
-			line-height: strip-unit(map-deep-get($font-styles, $name, large-line-height) / map-deep-get($font-styles, $name, large-font-size));
-		}
+	@include mq($from: large) {
+		line-height: strip-unit(map-deep-get($font-styles, $name, large-line-height) / map-deep-get($font-styles, $name, large-font-size));
 	}
 
 	@if $xlarge {
@@ -62,27 +59,15 @@ $xlarge: map-get($breakpoints, xlarge);
 	}
 
 	// <= 320 - medium
-	@if $large {
-		@include fluid(
-			font-size,
-			map-deep-get($font-styles, $name, small-font-size),
-			map-deep-get($font-styles, $name, medium-font-size),
-			320px,
-			map-get($breakpoints, medium),
-			false,
-			false
-		);
-	} @else {
-		@include fluid(
-			font-size,
-			map-deep-get($font-styles, $name, small-font-size),
-			map-deep-get($font-styles, $name, medium-font-size),
-			320px,
-			map-get($breakpoints, medium),
-			false,
-			true
-		);
-	}
+	@include fluid(
+		font-size,
+		map-deep-get($font-styles, $name, small-font-size),
+		map-deep-get($font-styles, $name, medium-font-size),
+		320px,
+		map-get($breakpoints, medium),
+		true,
+		false
+	);
 
 	// medium - large
 	@if $xlarge {

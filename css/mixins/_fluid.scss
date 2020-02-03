@@ -17,15 +17,12 @@
  * }
  */
 
-$large: map-get($breakpoints, large);
 $xlarge: map-get($breakpoints, xlarge);
 
-@if $xlarge {
+@if xlarge {
 	$max-vw: map-get($breakpoints, xlarge);
-} @else if $large {
-	$max-vw: map-get($breakpoints, large);
 } @else {
-	$max-vw: map-get($breakpoints, medium)
+	$max-vw: map-get($breakpoints, large);
 }
 
 @mixin fluid($properties, $min-value, $max-value, $min-vw: 320px, $max-vw: $max-vw, $includeMin: true, $includeMax: true, $negative: false) {
