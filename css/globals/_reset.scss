@@ -50,7 +50,8 @@ address {
 	font-style: normal;
 }
 
-[data-whatinput="mouse"] *:focus {
+[data-whatinput="mouse"] *:focus,
+[data-whatinput="touch"] *:focus {
 	outline: none;
 }
 /* stylelint-enable selector-max-type */
