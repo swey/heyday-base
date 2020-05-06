@@ -14,7 +14,7 @@ export default class FontLoader {
 
 	addGroup(className, list) {
 		// Don't add if already loaded
-		if (sessionStorage[className] === 'true') {
+		if (sessionStorage && sessionStorage[className] === 'true') {
 			return;
 		}
 
