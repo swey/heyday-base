@@ -8,6 +8,8 @@ export const events = {
  * FontLoader
  */
 export default class FontLoader {
+	// static saveInStorage = true;
+
 	constructor() {
 		this._fontGroups = [];
 	}
@@ -55,16 +57,22 @@ export default class FontLoader {
 			// console.log(`${className} with FontFaceObserver.`);
 
 			try {
-				sessionStorage[className] = 'true';
+				if (FontLoader.saveInStorage) {
+					sessionStorage[className] = 'true';
+				}
 			} catch (error) {
 			}
 		} catch (err) {
 			try {
-				sessionStorage[className] = 'false';
+				if (FontLoader.saveInStorage) {
+					sessionStorage[className] = 'false';
+				}
 			} catch (error) {
 			}
 		}
 	}
 }
+
+FontLoader.saveInStorage = true;
 
 export { default as FontFaceObserver } from 'fontfaceobserver/fontfaceobserver';
