@@ -17,7 +17,15 @@
  * }
  */
 
-@mixin fluid($properties, $min-value, $max-value, $min-vw: 320px, $max-vw: map-get($breakpoints, xlarge), $includeMin: true, $includeMax: true, $negative: false) {
+$xlarge: map-get($breakpoints, xlarge);
+
+@if xlarge {
+	$max-vw: map-get($breakpoints, xlarge);
+} @else {
+	$max-vw: map-get($breakpoints, large);
+}
+
+@mixin fluid($properties, $min-value, $max-value, $min-vw: 320px, $max-vw: $max-vw, $includeMin: true, $includeMax: true, $negative: false) {
 	@if $includeMin == true {
 		@each $property in $properties {
 			@if $negative == true {

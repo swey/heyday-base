@@ -25,6 +25,8 @@
  * }
  */
 
+$xlarge: map-get($breakpoints, xlarge);
+
 @mixin font-style-fluid($name) {
 	/* stylelint-disable length-zero-no-unit */
 	min-height: 0vw; /* Fix Safari bug with viewport units in calc() */
@@ -46,8 +48,10 @@
 		line-height: strip-unit(map-deep-get($font-styles, $name, large-line-height) / map-deep-get($font-styles, $name, large-font-size));
 	}
 
-	@include mq($from: xlarge) {
-		line-height: strip-unit(map-deep-get($font-styles, $name, xlarge-line-height) / map-deep-get($font-styles, $name, xlarge-font-size));
+	@if $xlarge {
+		@include mq($from: xlarge) {
+			line-height: strip-unit(map-deep-get($font-styles, $name, xlarge-line-height) / map-deep-get($font-styles, $name, xlarge-font-size));
+		}
 	}
 
 	@if map-deep-get($font-styles, $name, text-transform) != none {
@@ -66,26 +70,40 @@
 	);
 
 	// medium - large
-	@include fluid(
-		font-size,
-		map-deep-get($font-styles, $name, medium-font-size),
-		map-deep-get($font-styles, $name, large-font-size),
-		map-get($breakpoints, medium),
-		map-get($breakpoints, large),
-		false,
-		false
-	);
+	@if $xlarge {
+		@include fluid(
+			font-size,
+			map-deep-get($font-styles, $name, medium-font-size),
+			map-deep-get($font-styles, $name, large-font-size),
+			map-get($breakpoints, medium),
+			map-get($breakpoints, large),
+			false,
+			false
+		);
+	} @else {
+		@include fluid(
+			font-size,
+			map-deep-get($font-styles, $name, medium-font-size),
+			map-deep-get($font-styles, $name, large-font-size),
+			map-get($breakpoints, medium),
+			map-get($breakpoints, large),
+			false,
+			true
+		);
+	}
 
-	// large - xlarge
-	@include fluid(
-		font-size,
-		map-deep-get($font-styles, $name, large-font-size),
-		map-deep-get($font-styles, $name, xlarge-font-size),
-		map-get($breakpoints, large),
-		map-get($breakpoints, xlarge),
-		false,
-		true
-	);
+	@if $xlarge {
+		// large - xlarge
+		@include fluid(
+			font-size,
+			map-deep-get($font-styles, $name, large-font-size),
+			map-deep-get($font-styles, $name, xlarge-font-size),
+			map-get($breakpoints, large),
+			map-get($breakpoints, xlarge),
+			false,
+			true
+		);
+	}
 }
 
 // Default implementation of font-style mixin with the possibility for overwriting
